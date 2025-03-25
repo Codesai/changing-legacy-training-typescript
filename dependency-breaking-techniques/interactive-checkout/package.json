@@ -1,5 +1,5 @@
 {
-  "name": "interactive checkout",
+  "name": "interactive-checkout",
   "version": "0.0.1",
   "description": "interactive checkout",
   "main": "build/index.js",
