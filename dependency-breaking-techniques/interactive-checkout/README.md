@@ -1,6 +1,3 @@
-Assignment
-============
-
 Goal
 ----
 
@@ -19,7 +16,7 @@ Task
 ----
 
 The given code collects the necessary user confirmations
-during a purchase in our online shop. The main logic is in `Checkout`.
+during a purchase in our online shop. The main logic is in `Checkout.ts`.
 
-* Break the dependencies you need to bring `Checkout` under test, so that you can fix the existing test, then write more tests if you have time.
-* There is an existing `Checkout.test` with a first test case which might or might not work.
+* Break the dependencies you need to bring `Checkout.ts` under test, so that you can fix the existing test, then write more tests if you have time.
+* There is an existing `Checkout.test.ts` with a first test case which might or might not work.
