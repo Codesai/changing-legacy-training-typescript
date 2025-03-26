@@ -7,26 +7,36 @@ import {GameStateDto, OnGoing, Over} from "./GameStateDto";
 export class TextBasedPlayerInteraction implements PlayerInteraction {
     private readonly input: Input;
     private readonly output: Output;
+    private readonly prompt: string;
 
-    constructor(input: Input, output: Output) {
+    constructor(input: Input, output: Output, prompt: string = "") {
         this.input = input;
         this.output = output;
+        this.prompt = prompt;
+    }
+
+    public static createForX(input: Input, output: Output): TextBasedPlayerInteraction {
+        return new TextBasedPlayerInteraction(input, output, "X:\n");
+    }
+
+    public static createForO(input: Input, output: Output): TextBasedPlayerInteraction {
+        return new TextBasedPlayerInteraction(input, output, "O:\n");
     }
 
     public yourTurn(): Field {
-        this.output.display("your turn...");
+        this.output.display(this.prompt + "your turn...");
         while (true) {
             const input = this.input.read();
             if (FieldsRepresentations.exists(input)) {
                 return FieldsRepresentations.get(input);
             }
 
-            this.output.display("invalid input, please try again");
+            this.output.display(this.prompt + "invalid input, please try again");
         }
     }
 
     public display(gameStateDto: GameStateDto): void {
-        this.output.display(this.representGameState(gameStateDto));
+        this.output.display(this.prompt + this.representGameState(gameStateDto));
     }
 
     private representGameState(gameStateDto: GameStateDto): string {
