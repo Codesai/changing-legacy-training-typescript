@@ -62,24 +62,34 @@ export class Game {
     }
 
     public start(): void {
-        this.outputX.display(this.representGameState());
+        this.displayToPlayerX(this.representGameState());
         while (
             !Game.hasWon(this.playerXFields) &&
             (this.playerXFields.length + this.playerOFields.length) !== 9 &&
             !Game.hasWon(this.playerOFields)
             ) {
             if (this.turn === Turn.X) {
-                this.playerXFields.push(this.yourTurn(this.inputX, this.outputX));
-                this.outputX.display(this.representGameState());
-                this.outputO.display(this.representGameState());
+                this.displayToPlayerX("your turn...");
+                this.playerXFields.push(this.readPlayerInput(this.inputX, this.outputX));
+                this.displayToPlayerX(this.representGameState());
+                this.displayToPlayerO(this.representGameState());
                 this.turn = Turn.O;
             } else {
-                this.playerOFields.push(this.yourTurn(this.inputO, this.outputO));
-                this.outputX.display(this.representGameState());
-                this.outputO.display(this.representGameState());
+                this.displayToPlayerO("your turn...");
+                this.playerOFields.push(this.readPlayerInput(this.inputO, this.outputO));
+                this.displayToPlayerX(this.representGameState());
+                this.displayToPlayerO(this.representGameState());
                 this.turn = Turn.X;
             }
         }
+    }
+
+    private displayToPlayerX(message: string): void {
+        this.outputX.display("X:\n" + message);
+    }
+
+    private displayToPlayerO(message: string): void {
+        this.outputO.display("O:\n" + message);
     }
 
     private representGameState(): string {
@@ -132,14 +142,12 @@ export class Game {
         );
     }
 
-    private yourTurn(input: Input, output: Output): Field {
-        output.display("your turn...");
+    private readPlayerInput(input: Input, output: Output): Field {
         while (true) {
             const value = input.read();
             if (Game.fieldsByRepresentation.hasOwnProperty(value)) {
                 return Game.fieldsByRepresentation[value];
             }
-
             output.display("invalid input, please try again");
         }
     }
