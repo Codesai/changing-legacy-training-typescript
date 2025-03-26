@@ -9,7 +9,6 @@ export class Game {
     }
 
     public start(): void {
-        this.turn.showInitialMessage();
         this.startTurns();
     }
 

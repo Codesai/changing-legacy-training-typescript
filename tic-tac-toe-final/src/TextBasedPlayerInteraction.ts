@@ -2,7 +2,8 @@ import {Input} from "./Input";
 import {Output} from "./Output";
 import {PlayerInteraction} from "./PlayerInteraction";
 import {Field} from "./Field";
-import {GameStateDto, OnGoing, Over} from "./GameStateDto";
+import {GameStateDto} from "./GameStateDto";
+import {Status} from "./Status";
 
 export class TextBasedPlayerInteraction implements PlayerInteraction {
     private readonly input: Input;
@@ -57,11 +58,11 @@ class GameStateRepresentation {
         this.gameStateDto = gameStateDto;
     }
 
-    private static composeGameOverMessage(gameStatus: Over): string {
-        if (gameStatus.winsPlayerO()) {
+    private static composeGameOverMessage(status: Status): string {
+        if (status === Status.O_Wins) {
             return "O wins!\n";
         }
-        if (gameStatus.winsPlayerX()) {
+        if (status === Status.X_Wins) {
             return "X wins!\n";
         }
         return "Draw!\n";
@@ -100,11 +101,11 @@ class GameStateRepresentation {
     }
 
     private composeFinalMessage(): string {
-        const gameStatus: Over | OnGoing = this.gameStateDto.status;
-        if (gameStatus instanceof OnGoing) {
+        const status = this.gameStateDto.status;
+        if (status === Status.OnGoing) {
             return "";
         }
-        return GameStateRepresentation.composeGameOverMessage(gameStatus);
+        return GameStateRepresentation.composeGameOverMessage(status);
     }
 }
 

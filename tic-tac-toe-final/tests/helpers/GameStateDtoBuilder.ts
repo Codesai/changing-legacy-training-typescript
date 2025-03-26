@@ -1,5 +1,6 @@
-import {GameStateDto, OnGoing, Over} from "../../src/GameStateDto";
+import {GameStateDto} from "../../src/GameStateDto";
 import {Field} from "../../src/Field";
+import {Status} from "../../src/Status";
 
 export function initialGameStateDto(): GameStateDto {
     return GameStateDtoBuilder.aGameStateDto().build()
@@ -12,12 +13,12 @@ export function aGameStateDto(): GameStateDtoBuilder {
 export class GameStateDtoBuilder {
     private _playerX: Field[] = [];
     private _playerO: Field[] = [];
-    private _status: Over | OnGoing;
+    private _status: Status;
 
     private constructor() {
         this._playerX = [];
         this._playerO = [];
-        this._status = new OnGoing()
+        this._status = Status.OnGoing
     }
 
     static aGameStateDto(): GameStateDtoBuilder {
@@ -45,17 +46,17 @@ export class GameStateDtoBuilder {
     }
 
     winningPlayerX(): GameStateDtoBuilder {
-        this._status = Over.X_Wins();
+        this._status = Status.X_Wins;
         return this;
     }
 
     winningPlayerO(): GameStateDtoBuilder {
-        this._status = Over.O_Wins();
+        this._status = Status.O_Wins;
         return this;
     }
 
     withNoOneWinning(): GameStateDtoBuilder {
-        this._status = Over.Draw();
+        this._status = Status.Draw;
         return this;
     }
 
