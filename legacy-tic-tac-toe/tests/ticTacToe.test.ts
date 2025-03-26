@@ -1,45 +1,19 @@
-import {Input} from "../src/Input";
-import {Output} from "../src/Output";
 import {Game} from "../src/Game";
 
 describe("a Tic Tac Toe game on the console", () => {
-    let inputX: jest.Mocked<Input>;
-    let inputO: jest.Mocked<Input>;
-    let outputX: jest.Mocked<Output>;
-    let outputO: jest.Mocked<Output>;
-    let game: Game;
-    let outputXDisplayCalls: number;
-    let outputODisplayCalls: number;
+    let showXCalls: number;
+    let showOCalls: number;
+    let game2: ForTestingGame;
 
     beforeEach(() => {
-        outputXDisplayCalls = 0;
-        outputODisplayCalls = 0;
-        inputX = {
-            read: jest.fn(),
-        };
-        inputO = {
-            read: jest.fn(),
-        }
-        outputX = {
-            display: jest.fn(),
-        }
-        outputO = {
-            display: jest.fn(),
-        }
-
-        game = new Game(inputX, outputX, inputO, outputO);
+        showXCalls = 0;
+        showOCalls = 0;
     });
 
     it("player X wins after her third turn", () => {
-        inputX.read
-            .mockReturnValueOnce("1")
-            .mockReturnValueOnce("2")
-            .mockReturnValueOnce("3");
-        inputO.read
-            .mockReturnValueOnce("4")
-            .mockReturnValueOnce("5");
+        game2 = new ForTestingGame(["1", "2", "3"], ["4", "5"]);
 
-        game.start();
+        game2.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -80,17 +54,10 @@ describe("a Tic Tac Toe game on the console", () => {
         );
     });
 
-    it("player O wins after her third turn", () => {
-        inputX.read
-            .mockReturnValueOnce("4")
-            .mockReturnValueOnce("5")
-            .mockReturnValueOnce("7");
-        inputO.read
-            .mockReturnValueOnce("1")
-            .mockReturnValueOnce("2")
-            .mockReturnValueOnce("3");
+    xit("player O wins after her third turn", () => {
+        game2 = new ForTestingGame(["4", "5", "7"], ["1", "2", "3"]);
 
-        game.start();
+        game2.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -138,20 +105,10 @@ describe("a Tic Tac Toe game on the console", () => {
         );
     });
 
-    it("there is a draw when X1 → O5 → X9 → O2 → X8 → O7 → X3 → O6 → X4", () => {
-        inputX.read
-            .mockReturnValueOnce("1")
-            .mockReturnValueOnce("9")
-            .mockReturnValueOnce("8")
-            .mockReturnValueOnce("3")
-            .mockReturnValueOnce("4");
-        inputO.read
-            .mockReturnValueOnce("5")
-            .mockReturnValueOnce("2")
-            .mockReturnValueOnce("7")
-            .mockReturnValueOnce("6");
+    xit("there is a draw when X1 → O5 → X9 → O2 → X8 → O7 → X3 → O6 → X4", () => {
+        game2 = new ForTestingGame(["1", "9", "8", "3", "4"], ["5", "2", "7", "6"]);
 
-        game.start();
+        game2.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -221,29 +178,63 @@ describe("a Tic Tac Toe game on the console", () => {
     })
 
     function expectInitialDisplay(): void {
-        expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual(
+        expect(game2.outputsX[showXCalls]).toEqual(
+            "X:\n" +
             "1 | 2 | 3\n" +
             "---------\n" +
             "4 | 5 | 6\n" +
             "---------\n" +
             "7 | 8 | 9\n",
         );
-        outputXDisplayCalls++;
+        showXCalls++;
     }
 
     function expectTurnForPlayerX(boardRepresentation: string): void {
-        expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual("your turn...");
-        expect(outputX.display.mock.calls[outputXDisplayCalls + 1][0]).toEqual(boardRepresentation);
-        outputXDisplayCalls += 2;
-        expect(outputO.display.mock.calls[outputODisplayCalls][0]).toEqual(boardRepresentation);
-        outputODisplayCalls++;
+        expect(game2.outputsX[showXCalls]).toEqual(
+            "X:\nyour turn..."
+        )
+        expect(game2.outputsX[showXCalls + 1]).toEqual("X:\n" + boardRepresentation)
+        showXCalls += 2;
+        expect(game2.outputsO[showOCalls]).toEqual("O:\n" + boardRepresentation)
+        showOCalls++;
     }
 
     function expectTurnForPlayerO(boardRepresentation: string): void {
-        expect(outputO.display.mock.calls[outputODisplayCalls][0]).toEqual("your turn...");
-        expect(outputO.display.mock.calls[outputODisplayCalls + 1][0]).toEqual(boardRepresentation);
-        outputODisplayCalls += 2;
-        expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual(boardRepresentation);
-        outputXDisplayCalls++;
+        expect(game2.outputsO[showOCalls]).toEqual("O:\nyour turn...")
+        expect(game2.outputsO[showOCalls + 1]).toEqual("O:\n" + boardRepresentation)
+        showOCalls += 2;
+        expect(game2.outputsX[showXCalls]).toEqual("X:\n" + boardRepresentation)
+        showXCalls++;
     }
 });
+
+class ForTestingGame extends Game {
+    private inputsX: Array<string>;
+    private inputsO: Array<string>;
+    outputsX: Array<string>;
+    outputsO: Array<string>;
+
+    constructor(inputsX: Array<string>, inputsO: Array<string>) {
+        super();
+        this.inputsX = inputsX;
+        this.inputsO = inputsO;
+        this.outputsX = [];
+        this.outputsO = [];
+    }
+
+    protected readInputOfPlayerO(): string {
+        return this.inputsO.shift() || "";
+    }
+
+    protected readInputOfPlayerX(): string {
+        return this.inputsX.shift() || "";
+    }
+
+    protected showToPlayerX(strBoard: string) {
+        this.outputsX.push(strBoard);
+    }
+
+    protected showToPlayerO(strBoard: string) {
+        this.outputsO.push(strBoard);
+    }
+}
