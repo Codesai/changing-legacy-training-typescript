@@ -11,16 +11,4 @@ export class GameStateDto {
         this.playerOFields = playerO;
         this.status = status;
     }
-
-    static winning(playerX: Field[], playerO: Field[], status: Status): GameStateDto {
-        return new GameStateDto(playerX, playerO, status)
-    }
-
-    static noWinner(playerX: Field[], playerO: Field[]): GameStateDto {
-        return new GameStateDto(playerX, playerO, Status.Draw)
-    }
-
-    static onGoingGame(playerX: Field[], playerO: Field[]): GameStateDto {
-        return new GameStateDto(playerX, playerO, Status.OnGoing)
-    }
 }

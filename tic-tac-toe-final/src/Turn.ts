@@ -40,11 +40,11 @@ export abstract class Turn {
         return this._otherPlayer;
     }
 
-    protected abstract getWinnerStatus(): Status;
-
     protected abstract getPlayerX(): Player;
 
     protected abstract getPlayerO(): Player;
+
+    protected abstract createWinningDto(): GameStateDto;
 
     private thereIsNoWinnerYet(): boolean {
         return !this._currentPlayer.hasWon() && !this._otherPlayer.hasWon();
@@ -70,16 +70,12 @@ export abstract class Turn {
         return this.noWinnerDto();
     }
 
-    private createWinningDto(): GameStateDto {
-        return GameStateDto.winning(this.getPlayerX().toDto(), this.getPlayerO().toDto(), this.getWinnerStatus());
-    }
-
     private noWinnerDto(): GameStateDto {
-        return GameStateDto.noWinner(this.getPlayerX().toDto(), this.getPlayerO().toDto());
+        return GameStateDtoFactory.noWinner(this.getPlayerX(), this.getPlayerO());
     }
 
     private onGoingDto(): GameStateDto {
-        return GameStateDto.onGoingGame(this.getPlayerX().toDto(), this.getPlayerO().toDto());
+        return GameStateDtoFactory.onGoingGame(this.getPlayerX(), this.getPlayerO());
     }
 }
 
@@ -100,8 +96,8 @@ class TurnForO extends Turn {
         return this.currentPlayer();
     }
 
-    protected override getWinnerStatus(): Status {
-        return Status.O_Wins;
+    protected override createWinningDto(): GameStateDto {
+        return GameStateDtoFactory.winningO(this.otherPlayer(), this.currentPlayer());
     }
 }
 
@@ -122,7 +118,25 @@ class TurnForX extends Turn {
         return this.otherPlayer();
     }
 
-    protected override getWinnerStatus(): Status {
-        return Status.X_Wins;
+    protected override createWinningDto(): GameStateDto {
+        return GameStateDtoFactory.winningX(this.currentPlayer(), this.otherPlayer());
+    }
+}
+
+class GameStateDtoFactory {
+    static noWinner(playerX: Player, playerO: Player) {
+        return new GameStateDto(playerX.toDto(), playerO.toDto(), Status.Draw);
+    }
+
+    static onGoingGame(playerX: Player, playerO: Player) {
+        return new GameStateDto(playerX.toDto(), playerO.toDto(), Status.OnGoing);
+    }
+
+    static winningO(playerX: Player, playerO: Player) {
+        return new GameStateDto(playerX.toDto(), playerO.toDto(), Status.O_Wins);
+    }
+
+    static winningX(playerX: Player, playerO: Player) {
+        return new GameStateDto(playerX.toDto(), playerO.toDto(), Status.X_Wins);
     }
 }
