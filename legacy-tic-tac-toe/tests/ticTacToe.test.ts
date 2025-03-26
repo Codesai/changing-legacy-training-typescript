@@ -3,7 +3,7 @@ import {Game} from "../src/Game";
 describe("a Tic Tac Toe game on the console", () => {
     let showXCalls: number;
     let showOCalls: number;
-    let game2: ForTestingGame;
+    let game: ForTestingGame;
 
     beforeEach(() => {
         showXCalls = 0;
@@ -11,9 +11,9 @@ describe("a Tic Tac Toe game on the console", () => {
     });
 
     it("player X wins after her third turn", () => {
-        game2 = new ForTestingGame(["1", "2", "3"], ["4", "5"]);
+        game = new ForTestingGame(["1", "2", "3"], ["4", "5"]);
 
-        game2.start();
+        game.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -54,10 +54,10 @@ describe("a Tic Tac Toe game on the console", () => {
         );
     });
 
-    xit("player O wins after her third turn", () => {
-        game2 = new ForTestingGame(["4", "5", "7"], ["1", "2", "3"]);
+    it("player O wins after her third turn", () => {
+        game = new ForTestingGame(["4", "5", "7"], ["1", "2", "3"]);
 
-        game2.start();
+        game.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -105,10 +105,10 @@ describe("a Tic Tac Toe game on the console", () => {
         );
     });
 
-    xit("there is a draw when X1 → O5 → X9 → O2 → X8 → O7 → X3 → O6 → X4", () => {
-        game2 = new ForTestingGame(["1", "9", "8", "3", "4"], ["5", "2", "7", "6"]);
+    it("there is a draw when X1 → O5 → X9 → O2 → X8 → O7 → X3 → O6 → X4", () => {
+        game = new ForTestingGame(["1", "9", "8", "3", "4"], ["5", "2", "7", "6"]);
 
-        game2.start();
+        game.start();
 
         expectInitialDisplay();
         expectTurnForPlayerX(
@@ -178,7 +178,7 @@ describe("a Tic Tac Toe game on the console", () => {
     })
 
     function expectInitialDisplay(): void {
-        expect(game2.outputsX[showXCalls]).toEqual(
+        expect(game.outputsX[showXCalls]).toEqual(
             "X:\n" +
             "1 | 2 | 3\n" +
             "---------\n" +
@@ -190,20 +190,20 @@ describe("a Tic Tac Toe game on the console", () => {
     }
 
     function expectTurnForPlayerX(boardRepresentation: string): void {
-        expect(game2.outputsX[showXCalls]).toEqual(
+        expect(game.outputsX[showXCalls]).toEqual(
             "X:\nyour turn..."
         )
-        expect(game2.outputsX[showXCalls + 1]).toEqual("X:\n" + boardRepresentation)
+        expect(game.outputsX[showXCalls + 1]).toEqual("X:\n" + boardRepresentation)
         showXCalls += 2;
-        expect(game2.outputsO[showOCalls]).toEqual("O:\n" + boardRepresentation)
+        expect(game.outputsO[showOCalls]).toEqual("O:\n" + boardRepresentation)
         showOCalls++;
     }
 
     function expectTurnForPlayerO(boardRepresentation: string): void {
-        expect(game2.outputsO[showOCalls]).toEqual("O:\nyour turn...")
-        expect(game2.outputsO[showOCalls + 1]).toEqual("O:\n" + boardRepresentation)
+        expect(game.outputsO[showOCalls]).toEqual("O:\nyour turn...")
+        expect(game.outputsO[showOCalls + 1]).toEqual("O:\n" + boardRepresentation)
         showOCalls += 2;
-        expect(game2.outputsX[showXCalls]).toEqual("X:\n" + boardRepresentation)
+        expect(game.outputsX[showXCalls]).toEqual("X:\n" + boardRepresentation)
         showXCalls++;
     }
 });
