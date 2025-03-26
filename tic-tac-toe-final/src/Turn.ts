@@ -26,7 +26,7 @@ export abstract class Turn {
     public abstract showInitialMessage(): void;
 
     public canBePlayed(): boolean {
-        return !this._currentPlayer.hasWon() && !this.isBoardFull() && !this._otherPlayer.hasWon();
+        return this.thereIsNoWinnerYet() && this.boardIsNotFull();
     }
 
     protected abstract next(): Turn;
@@ -61,8 +61,12 @@ export abstract class Turn {
         this._otherPlayer.see(dto);
     }
 
-    private isBoardFull(): boolean {
-        return (this._currentPlayer.numberOfFields() + this._otherPlayer.numberOfFields()) === 9;
+    private thereIsNoWinnerYet(): boolean {
+        return !this._currentPlayer.hasWon() && !this._otherPlayer.hasWon();
+    }
+
+    private boardIsNotFull(): boolean {
+        return !((this._currentPlayer.numberOfFields() + this._otherPlayer.numberOfFields()) === 9);
     }
 }
 
@@ -71,7 +75,7 @@ class TurnForO extends Turn {
         super(currentPlayer, otherPlayer);
     }
 
-    public showInitialMessage(): void {
+    public override showInitialMessage(): void {
 
     }
 
@@ -83,11 +87,11 @@ class TurnForO extends Turn {
         return GameStateDto.winningO(this.otherPlayer().toDto(), this.currentPlayer().toDto());
     }
 
-    protected noWinnerDto(): GameStateDto {
+    protected override noWinnerDto(): GameStateDto {
         return GameStateDto.noWinner(this.otherPlayer().toDto(), this.currentPlayer().toDto());
     }
 
-    protected onGoingDto(): GameStateDto {
+    protected override onGoingDto(): GameStateDto {
         return GameStateDto.onGoingGame(this.otherPlayer().toDto(), this.currentPlayer().toDto());
     }
 }
@@ -97,7 +101,7 @@ class TurnForX extends Turn {
         super(currentPlayer, otherPlayer);
     }
 
-    public showInitialMessage(): void {
+    public override showInitialMessage(): void {
         this.currentPlayer().see(this.toDto());
     }
 
@@ -109,11 +113,11 @@ class TurnForX extends Turn {
         return GameStateDto.winningX(this.currentPlayer().toDto(), this.otherPlayer().toDto());
     }
 
-    protected noWinnerDto(): GameStateDto {
+    protected override noWinnerDto(): GameStateDto {
         return GameStateDto.noWinner(this.currentPlayer().toDto(), this.otherPlayer().toDto());
     }
 
-    protected onGoingDto(): GameStateDto {
+    protected override onGoingDto(): GameStateDto {
         return GameStateDto.onGoingGame(this.currentPlayer().toDto(), this.otherPlayer().toDto());
     }
 }
