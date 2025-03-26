@@ -108,7 +108,7 @@ class GameStateRepresentation {
     }
 }
 
-export class FieldsRepresentations {
+class FieldsRepresentations {
     private static readonly fieldsByRepresentation: Record<string, Field> = {
         "1": Field.One,
         "2": Field.Two,
