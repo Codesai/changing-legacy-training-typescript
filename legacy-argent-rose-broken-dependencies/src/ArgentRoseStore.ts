@@ -43,10 +43,10 @@ export class ArgentRoseStore {
     }
 
     protected async saveInventoryToDb(inventory: Product[]): Promise<void> {
-        const connectionString = this.getConnectionOptions();
+        const connectionOptions = this.getConnectionOptions();
 
         try {
-            const connection = await mysql2.createConnection(connectionString);
+            const connection = await mysql2.createConnection(connectionOptions);
             connection.beginTransaction();
 
             try {
