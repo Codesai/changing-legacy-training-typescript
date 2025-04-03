@@ -48,6 +48,10 @@ export class Product {
         this.sellIn -= 1;
     }
 
+    isLanzaroteWine(): boolean {
+        return this.description === "Lanzarote Wine";
+    }
+
     isTheatrePasses(): boolean {
         return this.description === "Theatre Passes";
     }
