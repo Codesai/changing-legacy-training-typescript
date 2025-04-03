@@ -89,8 +89,6 @@ export class ArgentRoseStore {
             } else {
                 product.increaseQualityBy(1);
             }
-        } else if (product.isLanzaroteWine()) {
-            product.increaseQualityBy(2);
         } else {
             product.decreaseQualityBy(2);
         }
