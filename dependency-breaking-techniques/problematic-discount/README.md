@@ -21,4 +21,7 @@ our online shop. The main logic is in `Discount.ts`.
 * There is an existing `Discount.test.ts` with a first test case which might or might not work.
 * Break the dependencies you need to bring `Discount.ts` under test. 
 * Fix the existing test and only then write more tests to cover the rest of `Discount.ts`'s code.
-* You cannot change `MarketingCampaign.ts` because it is used by other teams as well.
+* You cannot change `CalendarBasedMarketingCampaign.ts` because it is used by other teams as well.
+
+We may need to use test doubles. 
+Here you can find some example code that may help you: https://gist.github.com/trikitrok/c35768c3f67e10f4f0c6ecb0320e64d7
