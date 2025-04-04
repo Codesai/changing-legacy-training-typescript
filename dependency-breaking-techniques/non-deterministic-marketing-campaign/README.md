@@ -22,3 +22,6 @@ run on our online shop. During campaigns, we offer discounts.
 
 * Break the dependencies you need to bring `MarketingCampaign.ts` under test, so that you can fix the existing tests.
 * There is an existing `MarketingCampaign.test.ts` with a first test case which might or might not work.
+
+We may need to use test doubles. 
+Here you can find some example code that may help you: https://gist.github.com/trikitrok/c35768c3f67e10f4f0c6ecb0320e64d7
