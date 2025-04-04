@@ -14,3 +14,7 @@ The `WavExtractor32v` class needs to be updated to exclude files containing a ke
 
 - You cannot modify caller code.
 - You don’t have time to test/refactor `WavExtractor32v` or `Main`.
+
+
+We may need to use test doubles. 
+Here you can find some example code that may help you: https://gist.github.com/trikitrok/c35768c3f67e10f4f0c6ecb0320e64d7
