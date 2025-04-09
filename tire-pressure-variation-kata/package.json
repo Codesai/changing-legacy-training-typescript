@@ -22,8 +22,5 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:mutants": "stryker run"
-  },
-  "dependencies": {
-    "mysql2": "^3.14.0"
   }
 }
