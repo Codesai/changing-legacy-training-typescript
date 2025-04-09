@@ -20,14 +20,6 @@ export enum Field {
 
 export class Game {
 
-    private readonly inputX: Input;
-    private readonly outputX: Output;
-    private readonly inputO: Input;
-    private readonly outputO: Output;
-    private readonly playerXFields: Field[];
-    private readonly playerOFields: Field[];
-    private turn: Turn;
-
     private static readonly fieldsByRepresentation: { [key: string]: Field } = {
         "1": Field.One,
         "2": Field.Two,
@@ -39,7 +31,6 @@ export class Game {
         "8": Field.Eight,
         "9": Field.Nine
     };
-
     private static readonly winningCombinations: Field[][] = [
         [Field.One, Field.Two, Field.Three],
         [Field.Four, Field.Five, Field.Six],
@@ -50,6 +41,13 @@ export class Game {
         [Field.One, Field.Five, Field.Nine],
         [Field.Three, Field.Five, Field.Seven]
     ];
+    private readonly inputX: Input;
+    private readonly outputX: Output;
+    private readonly inputO: Input;
+    private readonly outputO: Output;
+    private readonly playerXFields: Field[];
+    private readonly playerOFields: Field[];
+    private turn: Turn;
 
     constructor(inputX: Input, outputX: Output, inputO: Input, outputO: Output) {
         this.inputX = inputX;
@@ -59,6 +57,12 @@ export class Game {
         this.turn = Turn.X;
         this.playerXFields = [];
         this.playerOFields = [];
+    }
+
+    public static hasWon(fields: Field[]): boolean {
+        return Game.winningCombinations.some(combination =>
+            combination.every(field => fields.includes(field))
+        );
     }
 
     public start(): void {
@@ -134,12 +138,6 @@ export class Game {
         }
 
         return res;
-    }
-
-    public static hasWon(fields: Field[]): boolean {
-        return Game.winningCombinations.some(combination =>
-            combination.every(field => fields.includes(field))
-        );
     }
 
     private readPlayerInput(input: Input, output: Output): Field {

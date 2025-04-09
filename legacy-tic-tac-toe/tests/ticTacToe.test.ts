@@ -222,7 +222,7 @@ describe("a Tic Tac Toe game on the console", () => {
 
     function expectInitialDisplay(): void {
         expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual(
-            "X:\n"+
+            "X:\n" +
             "1 | 2 | 3\n" +
             "---------\n" +
             "4 | 5 | 6\n" +
@@ -234,17 +234,17 @@ describe("a Tic Tac Toe game on the console", () => {
 
     function expectTurnForPlayerX(boardRepresentation: string): void {
         expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual("X:\nyour turn...");
-        expect(outputX.display.mock.calls[outputXDisplayCalls + 1][0]).toEqual("X:\n"+boardRepresentation);
+        expect(outputX.display.mock.calls[outputXDisplayCalls + 1][0]).toEqual("X:\n" + boardRepresentation);
         outputXDisplayCalls += 2;
-        expect(outputO.display.mock.calls[outputODisplayCalls][0]).toEqual("O:\n"+boardRepresentation);
+        expect(outputO.display.mock.calls[outputODisplayCalls][0]).toEqual("O:\n" + boardRepresentation);
         outputODisplayCalls++;
     }
 
     function expectTurnForPlayerO(boardRepresentation: string): void {
         expect(outputO.display.mock.calls[outputODisplayCalls][0]).toEqual("O:\nyour turn...");
-        expect(outputO.display.mock.calls[outputODisplayCalls + 1][0]).toEqual("O:\n"+boardRepresentation);
+        expect(outputO.display.mock.calls[outputODisplayCalls + 1][0]).toEqual("O:\n" + boardRepresentation);
         outputODisplayCalls += 2;
-        expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual("X:\n"+boardRepresentation);
+        expect(outputX.display.mock.calls[outputXDisplayCalls][0]).toEqual("X:\n" + boardRepresentation);
         outputXDisplayCalls++;
     }
 });
