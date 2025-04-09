@@ -1,7 +1,7 @@
 import mysql, {ConnectionOptions} from 'mysql2/promise';
 
-import { Logger } from './Logger';
-import { Person } from './Person';
+import {Logger} from './Logger';
+import {Person} from './Person';
 
 export class PersonsRepository {
     private static readonly databaseName: string = 'myshop';
