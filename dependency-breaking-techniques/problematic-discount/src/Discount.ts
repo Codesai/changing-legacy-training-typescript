@@ -8,7 +8,7 @@ export class Discount {
         this.marketingCampaign = new MarketingCampaign();
     }
 
-    public discountFor(netPrice: Money): Money {
+    discountFor(netPrice: Money): Money {
         if (this.marketingCampaign.isCrazySalesDay()) {
             return netPrice.reduceBy(15);
         }

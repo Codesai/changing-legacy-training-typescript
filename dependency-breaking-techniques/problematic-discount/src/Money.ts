@@ -1,6 +1,6 @@
 export class Money {
-    public static readonly oneThousand = new Money(1000);
-    public static readonly oneHundred = new Money(100);
+    static readonly oneThousand = new Money(1000);
+    static readonly oneHundred = new Money(100);
 
     private readonly value: number;
 
@@ -8,11 +8,11 @@ export class Money {
         this.value = value;
     }
 
-    public reduceBy(percentage: number): Money {
+    reduceBy(percentage: number): Money {
         return new Money(this.value * (100 - percentage) / 100);
     }
 
-    public moreThan(other: Money): boolean {
+    moreThan(other: Money): boolean {
         return this.value > other.value;
     }
 }
