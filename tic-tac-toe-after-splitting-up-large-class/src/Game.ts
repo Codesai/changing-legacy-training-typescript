@@ -18,7 +18,7 @@ export class Game {
         this.playerO = new Player([], playerOInteraction);
     }
 
-    public start(): void {
+    start(): void {
         this.playerX.see(this.toDto());
         this.startTurns();
     }

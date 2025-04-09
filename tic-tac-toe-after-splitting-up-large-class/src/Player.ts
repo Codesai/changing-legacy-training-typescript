@@ -22,25 +22,25 @@ export class Player {
         this.playerInteraction = playerInteraction;
     }
 
-    public hasWon(): boolean {
+    hasWon(): boolean {
         return this.winningCombinations.some(combination =>
             combination.every(field => this.owns(field))
         );
     }
 
-    public playTurn(): void {
+    playTurn(): void {
         this.addField(this.playerInteraction.yourTurn());
     }
 
-    public toDto(): Field[] {
+    toDto(): Field[] {
         return [...this.fields];
     }
 
-    public numberOfFields(): number {
+    numberOfFields(): number {
         return this.fields.length;
     }
 
-    public see(gameStateDto: GameStateDto): void {
+    see(gameStateDto: GameStateDto): void {
         this.playerInteraction.display(gameStateDto);
     }
 

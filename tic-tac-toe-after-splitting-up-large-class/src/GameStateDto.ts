@@ -7,7 +7,7 @@ enum Result {
 }
 
 export class Over {
-    public readonly result: Result;
+    readonly result: Result;
 
     private constructor(result: Result) {
         this.result = result;
@@ -38,9 +38,9 @@ export class OnGoing {
 }
 
 export class GameStateDto {
-    public readonly playerXFields: Field[];
-    public readonly playerOFields: Field[];
-    public readonly status: Over | OnGoing;
+    readonly playerXFields: Field[];
+    readonly playerOFields: Field[];
+    readonly status: Over | OnGoing;
 
     constructor(playerX: Field[], playerO: Field[], status: Over | OnGoing = new OnGoing()) {
         this.playerXFields = playerX;
