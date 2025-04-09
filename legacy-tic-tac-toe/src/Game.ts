@@ -59,13 +59,13 @@ export class Game {
         this.playerOFields = [];
     }
 
-    public static hasWon(fields: Field[]): boolean {
+    static hasWon(fields: Field[]): boolean {
         return Game.winningCombinations.some(combination =>
             combination.every(field => fields.includes(field))
         );
     }
 
-    public start(): void {
+    start(): void {
         this.displayToPlayerX(this.representGameState());
         while (
             !Game.hasWon(this.playerXFields) &&
