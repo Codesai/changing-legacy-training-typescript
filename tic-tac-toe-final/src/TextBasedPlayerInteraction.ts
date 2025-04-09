@@ -16,15 +16,15 @@ export class TextBasedPlayerInteraction implements PlayerInteraction {
         this.prompt = prompt;
     }
 
-    public static createForX(input: Input, output: Output): TextBasedPlayerInteraction {
+    static createForX(input: Input, output: Output): TextBasedPlayerInteraction {
         return new TextBasedPlayerInteraction(input, output, "X:\n");
     }
 
-    public static createForO(input: Input, output: Output): TextBasedPlayerInteraction {
+    static createForO(input: Input, output: Output): TextBasedPlayerInteraction {
         return new TextBasedPlayerInteraction(input, output, "O:\n");
     }
 
-    public yourTurn(): Field {
+    yourTurn(): Field {
         this.output.display(this.prompt + "your turn...");
         while (true) {
             const input = this.input.read();
@@ -36,7 +36,7 @@ export class TextBasedPlayerInteraction implements PlayerInteraction {
         }
     }
 
-    public display(gameStateDto: GameStateDto): void {
+    display(gameStateDto: GameStateDto): void {
         this.output.display(this.prompt + this.representGameState(gameStateDto));
     }
 
@@ -68,7 +68,7 @@ class GameStateRepresentation {
         return "Draw!\n";
     }
 
-    public create(): string {
+    create(): string {
         return this.representBoard() + this.composeFinalMessage();
     }
 
@@ -122,11 +122,11 @@ class FieldsRepresentations {
         "9": Field.Nine
     };
 
-    public static get(field: string): Field {
+    static get(field: string): Field {
         return this.fieldsByRepresentation[field];
     }
 
-    public static exists(field: string): boolean {
+    static exists(field: string): boolean {
         return field in this.fieldsByRepresentation;
     }
 }

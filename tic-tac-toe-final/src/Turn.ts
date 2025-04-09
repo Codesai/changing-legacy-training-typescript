@@ -12,7 +12,7 @@ export abstract class Turn {
         this._otherPlayer = otherPlayer;
     }
 
-    public static initial(xPlayerInteraction: PlayerInteraction, oPlayerInteraction: PlayerInteraction): Turn {
+    static initial(xPlayerInteraction: PlayerInteraction, oPlayerInteraction: PlayerInteraction): Turn {
         const xPlayer = new Player([], xPlayerInteraction);
         const oPlayer = new Player([], oPlayerInteraction);
         const turnForX = new TurnForX(xPlayer, oPlayer);
@@ -20,13 +20,13 @@ export abstract class Turn {
         return turnForX;
     }
 
-    public play(): Turn {
+    play(): Turn {
         this._currentPlayer.playTurn();
         this.displayStateAfterTurn();
         return this.next();
     }
 
-    public canBePlayed(): boolean {
+    canBePlayed(): boolean {
         return this.thereIsNoWinnerYet() && this.boardIsNotFull();
     }
 
@@ -80,7 +80,7 @@ export abstract class Turn {
 }
 
 class TurnForO extends Turn {
-    public constructor(currentPlayer: Player, otherPlayer: Player) {
+    constructor(currentPlayer: Player, otherPlayer: Player) {
         super(currentPlayer, otherPlayer);
     }
 
@@ -102,7 +102,7 @@ class TurnForO extends Turn {
 }
 
 class TurnForX extends Turn {
-    public constructor(currentPlayer: Player, otherPlayer: Player) {
+    constructor(currentPlayer: Player, otherPlayer: Player) {
         super(currentPlayer, otherPlayer);
     }
 

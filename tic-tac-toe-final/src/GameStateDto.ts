@@ -2,9 +2,9 @@ import {Field} from "./Field";
 import {Status} from "./Status";
 
 export class GameStateDto {
-    public readonly playerXFields: Field[];
-    public readonly playerOFields: Field[];
-    public readonly status: Status;
+    readonly playerXFields: Field[];
+    readonly playerOFields: Field[];
+    readonly status: Status;
 
     constructor(playerX: Field[], playerO: Field[], status: Status) {
         this.playerXFields = playerX;

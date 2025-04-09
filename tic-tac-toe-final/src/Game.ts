@@ -4,11 +4,11 @@ import {Turn} from "./Turn";
 export class Game {
     private turn: Turn;
 
-    public constructor(playerXInteraction: PlayerInteraction, playerOInteraction: PlayerInteraction) {
+    constructor(playerXInteraction: PlayerInteraction, playerOInteraction: PlayerInteraction) {
         this.turn = Turn.initial(playerXInteraction, playerOInteraction);
     }
 
-    public start(): void {
+    start(): void {
         this.startTurns();
     }
 
