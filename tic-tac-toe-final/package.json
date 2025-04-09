@@ -18,7 +18,6 @@
   },
   "scripts": {
     "compile": "tsc --project tsconfig.json",
-    "execute": "ts-node src/game-runner.ts",
     "test": "jest",
     "unit-test": "jest unit",
     "acceptance-test": "jest acceptance",
