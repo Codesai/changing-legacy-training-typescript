@@ -7,7 +7,7 @@ export class Alarm {
     private readonly sensor: Sensor = new Sensor();
     private alarmOn: boolean = false;
 
-    public check(): void {
+    check(): void {
         const psiPressureValue: number = this.sampleValue();
 
         if (psiPressureValue < Alarm.lowPressureThreshold || Alarm.highPressureThreshold < psiPressureValue) {

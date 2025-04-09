@@ -6,7 +6,7 @@ export class Sensor {
         return 6 * Math.random() * Math.random();
     }
 
-    public popNextPressurePsiValue(): number {
+    popNextPressurePsiValue(): number {
         const pressureTelemetryValue: number = Sensor.samplePressure();
 
         return Sensor.offset + pressureTelemetryValue;

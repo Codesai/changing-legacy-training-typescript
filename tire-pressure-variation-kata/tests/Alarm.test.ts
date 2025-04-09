@@ -61,7 +61,7 @@ describe("Alarm", () => {
 });
 
 class AlarmForTesting extends Alarm {
-    public readonly displayedMessages: string[];
+    readonly displayedMessages: string[];
     private readonly sampledValues: number[];
 
     constructor(...pressureValues: number[]) {
