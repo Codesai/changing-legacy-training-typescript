@@ -7,7 +7,7 @@ export class Person {
         this.surname = surname;
     }
 
-    public toString(): string {
+    toString(): string {
         return `name: ${this.name}, surname: ${this.surname}`;
     }
 }

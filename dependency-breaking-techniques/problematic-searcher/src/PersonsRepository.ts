@@ -8,7 +8,7 @@ export class PersonsRepository {
     private static readonly user: string = 'store';
     private static readonly password: string = '123456';
 
-    public static async query(sql: string): Promise<Person[]> {
+    static async query(sql: string): Promise<Person[]> {
         Logger.log(sql);
 
         const access: ConnectionOptions = {

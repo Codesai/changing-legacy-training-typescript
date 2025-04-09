@@ -1,5 +1,5 @@
 export class Logger {
-    public static log(message: string): void {
+    static log(message: string): void {
         console.log(message);
     }
 }
