@@ -22,7 +22,7 @@ export class Game {
         }
     }
 
-    public run(): void {
+    run(): void {
         let notAWinner;
         do {
 
@@ -37,7 +37,7 @@ export class Game {
         } while (notAWinner);
     }
 
-    public add(name: string): boolean {
+    add(name: string): boolean {
         this.players.push(name);
         this.places.push(0)
         this.purses.push(0)
