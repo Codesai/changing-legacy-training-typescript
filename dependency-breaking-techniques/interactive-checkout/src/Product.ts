@@ -1,15 +1,15 @@
 export class Product {
-    private readonly _name: string;
+    private readonly name: string;
 
     constructor(name: string) {
-        this._name = name;
+        this.name = name;
     }
 
-    public toString(): string {
+    toString(): string {
         return this.getName();
     }
 
     getName(): string {
-        return this._name;
+        return this.name;
     }
 }

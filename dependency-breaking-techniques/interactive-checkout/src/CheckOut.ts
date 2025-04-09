@@ -4,28 +4,28 @@ import {UserConfirmation} from "./UserConfirmation";
 import {OrderCancelledException} from "./OrderCancelledException";
 
 export class Checkout {
-    private readonly _emailService: EmailService;
-    private readonly _newsLetterSubscribed: UserConfirmation;
-    private readonly _product: Product;
-    private readonly _termsAndConditionsAccepted: UserConfirmation;
+    private readonly emailService: EmailService;
+    private readonly newsLetterSubscribed: UserConfirmation;
+    private readonly product: Product;
+    private readonly termsAndConditionsAccepted: UserConfirmation;
 
     constructor(product: Product, emailService: EmailService) {
-        this._product = product;
-        this._emailService = emailService;
-        this._newsLetterSubscribed = new UserConfirmation(
+        this.product = product;
+        this.emailService = emailService;
+        this.newsLetterSubscribed = new UserConfirmation(
             "Subscribe to our product " + product + " newsletter?"
         );
-        this._termsAndConditionsAccepted = new UserConfirmation(
+        this.termsAndConditionsAccepted = new UserConfirmation(
             "Accept our terms and conditions?\n" + //
             "(Mandatory to place order for " + product + ")");
     }
 
-    public confirmOrder(): void {
-        if (!this._termsAndConditionsAccepted.wasAccepted()) {
-            throw new OrderCancelledException(this._product);
+    confirmOrder(): void {
+        if (!this.termsAndConditionsAccepted.wasAccepted()) {
+            throw new OrderCancelledException(this.product);
         }
-        if (this._newsLetterSubscribed.wasAccepted()) {
-            this._emailService.subscribeUserFor(this._product);
+        if (this.newsLetterSubscribed.wasAccepted()) {
+            this.emailService.subscribeUserFor(this.product);
         }
     }
 }
