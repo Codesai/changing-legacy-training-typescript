@@ -18,9 +18,11 @@ Task
 The given code collects the necessary user confirmations
 during a purchase in our online shop. The main logic is in `Checkout.ts`.
 
-* Break the dependencies you need to bring `Checkout.ts` under test, so that you can fix the existing test, then write more tests if you have time.
+* Break the dependencies you need to bring `Checkout.ts` under test, so that you can fix the existing test, then write
+  more tests if you have time.
 * There is an existing `Checkout.test.ts` with a first test case which might or might not work.
 
-We may need to use test doubles. 
-Here you can find some example code that may help you: https://gist.github.com/trikitrok/c35768c3f67e10f4f0c6ecb0320e64d7
+We may need to use test doubles.
+Here you can find some example code that may help
+you: https://gist.github.com/trikitrok/c35768c3f67e10f4f0c6ecb0320e64d7
 
