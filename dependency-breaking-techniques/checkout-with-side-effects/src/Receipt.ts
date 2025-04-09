@@ -11,7 +11,7 @@ export class Receipt {
         this.total = total;
     }
 
-    public format(): string[] {
+    format(): string[] {
         return [
             //
             "Receipt", //

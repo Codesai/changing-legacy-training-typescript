@@ -7,7 +7,7 @@ export class ReceiptRepository {
     private static user = "store";
     private static password = "123456";
 
-    public static async store(receipt: Receipt): Promise<void> {
+    static async store(receipt: Receipt): Promise<void> {
 
         const access: ConnectionOptions = {
             host: "localhost",
