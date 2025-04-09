@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export class WavExtractor32V {
-    public execute(filenames: string[], optional: string[]): void {
+    execute(filenames: string[], optional: string[]): void {
         const data: string[] = [];
         data.push("== Wave Extractor Report");
 

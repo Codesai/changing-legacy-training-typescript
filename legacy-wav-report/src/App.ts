@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 export class App {
-    public static main(args: string[]): void {
+    static main(args: string[]): void {
         if (args.length === 0) {
             throw new Error("You must provide a directory");
         }
@@ -16,7 +16,7 @@ export class App {
     private static execute(args: string[]): void {
         const wavExtractor = WavExtractorFactory.get();
         const optional = args.slice(1);
-        const files = fs.readdirSync(args[0]).map(file => path.join(args[0], file));
+        const files = fs.readdirSync(args[0]).map((file: any) => path.join(args[0], file));
         wavExtractor.execute(files, optional);
     }
 }
