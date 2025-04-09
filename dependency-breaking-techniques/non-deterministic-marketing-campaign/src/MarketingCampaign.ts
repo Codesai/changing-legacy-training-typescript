@@ -1,9 +1,9 @@
 export class MarketingCampaign {
-    public isActive(): boolean {
+    isActive(): boolean {
         return this.milliSeconds() % 2 === 0;
     }
 
-    public isCrazySalesDay(): boolean {
+    isCrazySalesDay(): boolean {
         return this.dayOfTheWeek() === 5;
     }
 
