@@ -41,6 +41,7 @@ export class ArgentRoseStore {
         }
         return inventory;
     }
+
     private updateInventory(): void {
         this.inventory.forEach(this.updateProduct.bind(this));
     }
