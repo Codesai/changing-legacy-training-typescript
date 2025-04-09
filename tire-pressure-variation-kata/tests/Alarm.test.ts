@@ -61,8 +61,8 @@ describe("Alarm", () => {
 });
 
 class AlarmForTesting extends Alarm {
-    private readonly sampledValues: number[];
     public readonly displayedMessages: string[];
+    private readonly sampledValues: number[];
 
     constructor(...pressureValues: number[]) {
         super();
@@ -72,10 +72,10 @@ class AlarmForTesting extends Alarm {
 
     protected override sampleValue(): number {
         const value = this.sampledValues.shift();
-        if(!value) {
+        if (!value) {
             throw new Error("Not enough sampled values for this test!");
         }
-        return  value;
+        return value;
     }
 
     protected override display(message: string): void {
