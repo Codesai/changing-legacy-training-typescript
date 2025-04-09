@@ -1,27 +1,27 @@
 export class Money {
-    private readonly _value: number;
+    private readonly amount: number;
 
-    constructor(value: number) {
-        this._value = value;
+    constructor(amount: number) {
+        this.amount = amount;
     }
 
     add(other: Money): Money {
-        return new Money(this._value + other._value);
+        return new Money(this.amount + other.amount);
     }
 
-    percentage(p: number): Money {
-        return new Money(this._value * p / 100);
+    percentage(percentage: number): Money {
+        return new Money(this.amount * percentage / 100);
     }
 
     format(): string {
-        return `${this._value.toFixed(2)}`;
+        return `${this.amount.toFixed(2)}`;
     }
 
-    value(): number {
-        return this._value;
+    getAmount(): number {
+        return this.amount;
     }
 
     toString(): string {
-        return `Money { ${this._value} }`;
+        return `Money { ${this.amount} }`;
     }
 }

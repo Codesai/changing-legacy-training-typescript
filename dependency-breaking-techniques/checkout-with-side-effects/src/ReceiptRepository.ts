@@ -21,9 +21,9 @@ export class ReceiptRepository {
         try {
             const sql = 'INSERT INTO `RECEIPT`(`AMOUNT`, `TAX`, `TOTAL`) VALUES (?, ?, ?)';
             const values = [
-                receipt.amount.value(),
-                receipt.tax.value(),
-                receipt.total.value(),
+                receipt.amount.getAmount(),
+                receipt.tax.getAmount(),
+                receipt.total.getAmount(),
             ];
             await conn.execute(sql, values);
         } catch (err) {
