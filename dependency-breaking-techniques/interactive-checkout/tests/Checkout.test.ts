@@ -3,7 +3,7 @@ import {EmailService} from "../src/EmailService";
 import {Checkout} from "../src/CheckOut";
 
 describe("Checkout", () => {
-    it("order comfirmation falis if user does not accept terms of service", () => {
+    it("order confirmation fails if user does not accept terms of service", () => {
         // note for tester:
         // Accept Newsletter
         // Do not Accept Terms
