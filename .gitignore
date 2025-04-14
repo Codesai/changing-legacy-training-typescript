@@ -4,3 +4,5 @@ reports
 dist
 .idea
 build
+.stryker-tmp
+.approval_tests_temp
