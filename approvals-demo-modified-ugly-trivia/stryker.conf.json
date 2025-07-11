@@ -1,0 +1,9 @@
+{
+  "checkers": [
+    "typescript"
+  ],
+  "tsconfigFile": "tsconfig.json",
+  "commandRunner": {
+    "command": "export MUTATION_TESTING=true && npm test"
+  }
+}
