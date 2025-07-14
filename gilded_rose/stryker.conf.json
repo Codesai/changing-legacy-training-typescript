@@ -1,5 +1,7 @@
 {
   "checkers": ["typescript"],
-  "tsconfigFile": "stryker-tsconfig.json",
-  "commandRunner": { "command": "export MUTATION_TESTING=true && npm test" }
+  "tsconfigFile": "tsconfig.json",
+  "commandRunner": {
+    "command": "export MUTATION_TESTING=true && npm test"
+  }
 }

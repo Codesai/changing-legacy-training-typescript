@@ -1,7 +1,7 @@
 import {Item} from "./Item";
 
 export class GildedRose {
-    items: Array<Item>;
+    private readonly items: Array<Item>;
 
     constructor(items = [] as Array<Item>) {
         this.items = items;
