@@ -1,17 +1,19 @@
 import {WebStormReporter} from "./webStormReporter";
 import {configure} from "approvals/lib/Approvals";
 import {
-    verifyAllCombinations3 as approvalsVerifyAllCombinations3
+    verifyAllCombinations as approvalsVerifyAllCombinations, Printer, VariationsForEachParameter
 } from "approvals/lib/Providers/Jest/CombinationApprovals";
 import {defaultConfig} from "approvals/lib/config";
 
 let reporterConfigured = false;
 
-export function verifyAllCombinations3(f: any, t1: any, t2: any, t3: any) {
-    if(!reporterConfigured) {
+export function verifyAllCombinations<T extends any[]>(
+    func: Printer<T>,
+    ...variations: VariationsForEachParameter<T>) {
+    if (!reporterConfigured) {
         configureWebStormReporter();
     }
-    approvalsVerifyAllCombinations3(f, t1, t2, t3)
+    approvalsVerifyAllCombinations(func, ...variations)
 }
 
 function configureWebStormReporter() {
