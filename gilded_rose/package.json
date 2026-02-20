@@ -18,7 +18,9 @@
     "typescript": "^4.7.4"
   },
   "overrides": {
-    "diff": "^8.0.2"
+    "diff": "^8.0.2",
+    "minimatch": "10.2.1",
+    "ajv": "8.18.0"
   },
   "scripts": {
     "compile": "tsc --project tsconfig.json",
